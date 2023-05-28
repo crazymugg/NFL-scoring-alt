@@ -3,12 +3,13 @@ from datetime import timedelta
 def convert_time(quarter, time) -> int:
         time_minutes, time_seconds = time.split(':')
         if quarter != 'OT':
-                converted_quater = timedelta(minutes=(60-(15*int(quarter))))
+                converted_quarter = timedelta(minutes=((15*(int(quarter)))))
         else:
-                converted_quater = timedelta(10)
+                converted_quarter = timedelta(minutes=10)
         converted_time = timedelta(minutes=int(time_minutes), seconds=int(time_seconds))
-        total_time = converted_quater + converted_time
+        total_time = converted_quarter - converted_time
         sec = int(total_time.seconds)
+        # print(sec)
         return sec
 
 

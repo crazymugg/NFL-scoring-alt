@@ -15,9 +15,11 @@ class App():
                 path = root + '/' + file
                 game = Game(data=path)
                 # print(path)
-                if game.team_a == 'GNB' or game.team_b == 'GNB':
-                    print(f'The original was: {int(game.orgin_score_a)} {game.team_a} to {int(game.orgin_score_b)} {game.team_b}')
-                    print(f'The new final is: {int(game.score_a)} {game.team_a} to {int(game.score_b)} {game.team_b}')
+                # if game.team_a == 'GNB' or game.team_b == 'GNB':
+                if game.changed == True:
+                    print(f'CHANGED OUTCOME: {game.team_a} vs {game.team_b}:{int(game.orgin_score_a)}-{int(game.orgin_score_b)} turns into {int(game.score_a)}-{int(game.score_b)}')
+                else:
+                    print(f'{game.team_a} vs {game.team_b}:{int(game.orgin_score_a)}-{int(game.orgin_score_b)} turns into {int(game.score_a)}-{int(game.score_b)}')
         print(Team.team_dict)
                 
 

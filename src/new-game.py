@@ -9,13 +9,11 @@ class Game():
         self.data = data
         self.team_a: str
         self.team_b: str
-        self.score_a = 0
-        self.score_b = 0
-        self.orgin_score_a = 0
-        self.orgin_score_b = 0
+        self.score_a: int = 0
+        self.score_b: int = 0
+        self.orgin_score_a:str
+        self.orgin_score_b: str
         self.rate = 600
-        self.seconds = 0
-        self.changed = False
         self.read_data()
         self.change_records()
 
@@ -26,7 +24,7 @@ class Game():
             for i, row in enumerate(reader):
                 if i == 0:
                     self.team_a = row[-2]
-                    self.team_b = row[-1]
+                    self.team_b= row[-1]
                 else:
                     if len(row) == 6:
                         quarter = row[0]
@@ -35,26 +33,20 @@ class Game():
                         game_time = row[0]
 
                     sec = convert_time(quarter, game_time)
-                    self.calc_score(sec)
+                    old_score = self.score_a * (sec/self.rate)
+                    new_score = int(row[-2])
+                    self.score_a = int(old_score + new_score)
+                    # self.score_a += int(row[-2]) * (sec /5000)
+                    # self.score_b += int(row[-1]) * (sec /5000)
+                    old_score = self.score_b * (sec/self.rate)
+                    new_score = int(row[-1])
+                    self.score_b = int(old_score + new_score)
+                    # print(f'{self.score_a}-{self.score_b}')
+
 
                     self.orgin_score_a = int(row[-2])
                     self.orgin_score_b = int(row[-1])
-                    # print(f'{self.orgin_score_a} - {self.orgin_score_b}')
-                    # print(f'{self.score_a} - {self.score_b}')
                     # time.sleep(1)
-            self.calc_score()
-            # print(f'{int(self.orgin_score_a)} - {int(self.orgin_score_b)}')
-            # print(f'{int(self.score_a)} - {int(self.score_b)}')
-
-
-    def calc_score(self, sec=3600):
-        difference = self.orgin_score_a - self.orgin_score_b
-        area = difference * (sec-self.seconds)
-        if difference > 0:
-            self.score_a += area/self.rate
-        elif area < 0:
-            self.score_b -= area/self.rate
-        self.seconds = sec
 
 
     def change_records(self):
@@ -67,7 +59,6 @@ class Game():
         original_outcome = get_outcome(self.orgin_score_a, self.orgin_score_b)
         new_outcome = get_outcome(self.score_a, self.score_b, a, b)
         if original_outcome != new_outcome:
-            self.changed = True
             a.difference -= original_outcome
             b.difference += original_outcome
 
