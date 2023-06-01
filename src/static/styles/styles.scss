@@ -1,0 +1,150 @@
+@import './variables';
+@import './content';
+
+@mixin zero-margin-and-padding($m: 0px, $p: 0px) {
+    margin: $m;
+    padding: $p;
+}
+
+#body {
+    @include zero-margin-and-padding();
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: $platinum;
+    
+    #header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        background-color: $space;
+        @media screen and (min-width: $medium) {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+        @media screen and (max-width: $medium) {
+            width: 100%;
+            padding-left: 0%;
+            padding-right: 0%;
+        }
+
+
+        #main-name {
+            @include zero-margin-and-padding(0px, 10px);
+            color:$white;
+            @media screen and (max-width: $medium) {
+                width: 100%;
+                text-align: center;
+            }
+            
+            span {
+                color: $munsell;
+            }
+        }
+        
+        #nav-bar-list {
+            @include zero-margin-and-padding();
+            display: flex;
+            flex-direction: row;
+            list-style-type: none;
+            justify-content: space-around;
+            @media screen and (max-width: $medium) {
+                width: 100%;
+                background-color: $payne;
+            }
+            
+            .nav-bar-item {
+                @include zero-margin-and-padding(0px, 25px);
+                border: none;
+                background: none;
+                transition: background-color 500ms;
+                text-align: center;
+                color: $white;
+                @media screen and (max-width: $medium) {
+                    padding: 10px 0px;
+                    flex-grow: 1;
+                }
+                @media screen and (max-width: $small) {
+                    font-size: 50%;
+                }
+                
+                &:hover {
+                    background-color: $munsell;
+                    background-image: none;
+                }
+                
+            }
+        }
+    }
+    
+    #content-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: black;
+        padding-bottom: 2.5rem;
+    }
+    
+    #footer {
+        background-color: $space;
+        color: $white;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        height: 2.5rem; 
+        
+        #footer-text {
+            margin-top: 8px;
+            // margin-left: 5%;
+            @media screen and (max-width: $small) {
+                font-size: 65%;
+            }
+        }
+    }
+
+    #content-container{
+        h2, h1 {
+            margin: 0px;
+            text-align: center;
+            @media screen and (max-width: $small) {
+                font-size: 75%;
+            }
+        }
+        p {
+            width: 60%;
+            text-align: center;
+            @media screen and (max-width: $small) {
+                font-size: 75%;
+            }
+        }
+        .image {
+            width: 60%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        .image-wrap {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .image-wrap-image {
+            width: 60%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+    }
+}
