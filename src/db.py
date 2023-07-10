@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+
 from .models import create_models
 
 
@@ -7,6 +8,14 @@ class DataBase():
     def __init__(self, app):
         self.db = SQLAlchemy(app)
         self.Team, self.Game, self.Line = create_models(self.db)
+
+    def get_models(self):
+        models = {
+            'Team': self.Team,
+            'Game': self.Game,
+            'Line': self.Line,
+        }
+        return models
 
 
     """ Section for team related functions"""
@@ -69,15 +78,11 @@ class DataBase():
         print('Deleted Users')
         return deleted_name
 
-
-
-
-
-
     def reset_tables(self):
         self.db.drop_all()
         self.db.create_all()
         print('Reset Tables')
+
 
 def create_db(app):
     db = DataBase(app)

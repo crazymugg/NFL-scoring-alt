@@ -1,6 +1,5 @@
 class config:
-    MAIL_SERVER=''
-    MAIL_PORT=''
-    MAIL_USERNAME=''
-    MAIL_PASSWORD=''
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
+    FLASK_ADMIN_SWATCH = 'cosmo'
+    BOOTSTRAP_BOOTSWATCH_THEME = 'superhero'
+    SQLALCHEMY_COMMIT_ON_TEARDOWN = 'False'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///project.db'
