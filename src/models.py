@@ -14,7 +14,6 @@ def create_models(db):
 
     team_table = db.Table('teams_in_games',
         db.Column('game_id', db.Integer, db.ForeignKey('game.id'), primary_key = True),
-        db.Column('team_id', db.Integer, db.ForeignKey('team.id'), primary_key = True),
         db.Column('team_id', db.Integer, db.ForeignKey('team.id'), primary_key = True))
 
     class Team(db.Model):
