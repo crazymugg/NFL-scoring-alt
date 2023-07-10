@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
+from flask_bootstrap import Bootstrap5
 
 from src.config import config
 from .db import create_db
