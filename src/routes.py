@@ -9,6 +9,18 @@ def create_routes(app, db):
     def about():
         return render_template('about.html')
     
+    @app.route('/base')
+    def base():
+        thing = app.config['BOOTSTRAP_BOOTSWATCH_THEME']
+        return render_template('base.html', thing=thing)
+
+
+    @app.route("/theme/<int:id>")
+    def themes(id):
+        themes=['cerulean', 'cosmo', 'cyborg', 'darkly', 'flatly', 'journal', 'litera', 'lumen', 'lux', 'materia', 'minty', 'pulse', 'sandstone', 'simplex', 'sketchy', 'slate', 'solar', 'spacelab', 'superhero', 'united', 'yeti', 'morph', 'quartz', 'vapor', 'zephyr']
+        app.config['BOOTSTRAP_BOOTSWATCH_THEME'] = themes[id]
+        return redirect('/base')
+    
     @app.route('/reset')
     def reset():
         db.reset_tables()

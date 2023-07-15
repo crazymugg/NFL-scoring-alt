@@ -1,39 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
+{% from 'bootstrap5/nav.html' import render_nav_item %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./static/styles/styles.min.css"/>
-    <script src="../static/scripts/jquery.js"></script>
-    {# <script src="../static/scripts/homeRequest.js"></script> #}
-    <title>Alt NFL Scoring</title>
-</head>
+    <head>
+        {% block head %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
-<body id="body">
-    <header id="header">
-        <h1 id="main-name">Hardie <span id="last-name">Parham</span></h1>
-        <ul id="nav-bar-list">
-            <button class="nav-bar-item" id="btn_home">Home</button>
-            <button class="nav-bar-item" id="btn_personal_life">Personal Life</button>
-            <button class="nav-bar-item" id="btn_work_history">Work History</button>
-            <button class="nav-bar-item" id="btn_programming">Programming</button>
-            <button class="nav-bar-item" id="btn_contact">Contact</button>    
-        </ul>
-        </nav>
-    </header>
+        {% block styles %}
+            <!-- Bootstrap CSS -->
+            {{ bootstrap.load_css() }}
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.min.css') }}">
+        {% endblock %}
 
+        <title>NFL Scoring ALT</title>
+        {% endblock %}
+    </head>
 
-    <div id="content-container">
-        <!-- Ajax request info goes here! -->
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="navbar-nav mr-auto">
+            {{ render_nav_item('home', 'Home') }}
+            {{ render_nav_item('view_score', 'Explore') }}
+            {{ render_nav_item('about', 'About') }}
+        </div>
+    </nav>
 
 
-    <footer id="footer">
-        <p id="footer-text">Custom coded by Hardie Parham in 2023 😄</p>
-    </footer>
-</body>
+    <body>
+        <!-- Your page content -->
+        <div class="content">
+            {% block content %}
+            <h1>Hello There!</h1>
+            <h2>This is the {{ thing }} theme.</h2>
+            <h4>Light should be Simplex (13)</h4>
+            <h4>Dark should be Darkly (3)</h4>
+            {% endblock %}
+        </div>
 
-<script src="../static/scripts/pageRequests.js"></script>
-
+        {% block scripts %}
+            <!-- Optional JavaScript -->
+            {{ bootstrap.load_js() }}
+            <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+        {% endblock %}
+    </body>
 </html>
