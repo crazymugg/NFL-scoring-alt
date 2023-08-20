@@ -1,7 +1,44 @@
+# import csv
+# import os
+# from .team import Team
+# from .utils import convert_time, get_outcome
+
+
 import csv
 import os
-from .team import Team
-from .utils import convert_time, get_outcome
+from team import Team
+from utils import convert_time, get_outcome
+
+
+# take input
+# convert to lines
+# calc score by each line
+# return updated stats
+input = {}
+input2 = {}
+output = {}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class Game():
@@ -78,3 +115,13 @@ class Game():
         # print(f'The Game was: {os.path.splitext(path_list[-1])[0]}')
         # return (year, week, num)
         return str(f'{year}.{week}.{num}')
+    
+
+
+
+
+
+
+
+if __name__ == "__main__":
+    pass
